@@ -1,0 +1,8 @@
+syntax="proto3";
+
+message TransactionProto {
+  string accountId = 1;
+  string transactionId = 2;
+  int64 timestamp = 3;
+  int64 value = 4;
+}
