@@ -1,6 +1,6 @@
 package com.araujo.xavier.kafka.fundamentals.training.serdes;
 
-import com.araujo.xavier.kafka.fundamentals.training.contracts.AccountTransaction;
+import com.araujo.xavier.kafka.fundamentals.training.domain.AccountTransaction;
 import com.araujo.xavier.kafka.fundamentals.training.contracts.Transaction;
 import org.apache.kafka.common.serialization.Serializer;
 

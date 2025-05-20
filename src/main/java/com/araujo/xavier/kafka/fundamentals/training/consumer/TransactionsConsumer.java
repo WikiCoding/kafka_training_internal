@@ -1,6 +1,6 @@
 package com.araujo.xavier.kafka.fundamentals.training.consumer;
 
-import com.araujo.xavier.kafka.fundamentals.training.contracts.AccountTransaction;
+import com.araujo.xavier.kafka.fundamentals.training.domain.AccountTransaction;
 import com.araujo.xavier.kafka.fundamentals.training.persistence.ConsumedRecordsRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -49,7 +49,7 @@ public class TransactionsConsumer {
                 continue;
             }
 
-            log.info("Already processed transaction {}. Skipped.", accountId);
+            log.warn("Already processed transaction {}. Skipped.", accountId);
         }
     }
 

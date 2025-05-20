@@ -1,6 +1,7 @@
 package com.araujo.xavier.kafka.fundamentals.training.persistence;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -14,10 +15,11 @@ import java.util.stream.Stream;
 
 @Component
 @Slf4j
-public class ConsumeRecordsRepositoryImpl implements ConsumedRecordsRepository {
+@Primary
+public class ConsumedRecordsRepositoryImpl implements ConsumedRecordsRepository {
     private static final Path REGISTER_FILE = Paths.get("processed_accounts.txt");
 
-    public ConsumeRecordsRepositoryImpl() {
+    public ConsumedRecordsRepositoryImpl() {
         if (!Files.exists(REGISTER_FILE)) {
             try {
                 Files.createFile(REGISTER_FILE);
@@ -44,11 +46,6 @@ public class ConsumeRecordsRepositoryImpl implements ConsumedRecordsRepository {
 
     @Override
     public Set<String> loadProcessedAccountIds() {
-//        if (!Files.exists(REGISTER_FILE)) {
-//            createFile();
-//            return Set.of();
-//        }
-
         Set<String> processedAccountIds = new HashSet<>();
 
         try (Stream<String> lines = Files.lines(REGISTER_FILE)) {
@@ -60,13 +57,4 @@ public class ConsumeRecordsRepositoryImpl implements ConsumedRecordsRepository {
             return Set.of();
         }
     }
-
-//    private static void createFile() {
-//        try {
-//            Files.createFile(REGISTER_FILE);
-//            log.info("Register file created: {}", REGISTER_FILE);
-//        } catch (IOException e) {
-//            log.error("Failed to create register file: {}", REGISTER_FILE, e);
-//        }
-//    }
 }
